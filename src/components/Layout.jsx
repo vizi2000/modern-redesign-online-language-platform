@@ -5,6 +5,7 @@ import Chatbot from '@/components/Chatbot.jsx'
 import StickyMobileCTA from '@/components/StickyMobileCTA.jsx'
 import NewsletterWidget from '@/components/NewsletterWidget.jsx'
 import GoogleAnalytics from '@/components/GoogleAnalytics.jsx'
+import StructuredData from '@/components/StructuredData.jsx'
 import { 
   ChevronDown,
   Menu,
@@ -32,6 +33,7 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-slate-50 relative overflow-hidden">
       <GoogleAnalytics />
+      <StructuredData />
       
       {/* Header */}
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -40,7 +42,7 @@ const Layout = ({ children }) => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2" aria-label="Akademia Poliglotki - Strona główna">
               <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-blue-600 rounded-lg flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
@@ -90,6 +92,8 @@ const Layout = ({ children }) => {
             <button 
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
