@@ -114,24 +114,25 @@ const AboutTeacher = () => {
               <CardContent className="p-8 text-center">
                 {/* Profile Photo */}
                 <div className="w-48 h-48 mx-auto mb-6 relative">
-                  {/* Professional placeholder - represents teacher profile */}
-                  <div className="w-full h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-full flex items-center justify-center border-4 border-white shadow-lg relative overflow-hidden">
-                    {/* Background pattern */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-purple-500/20 to-pink-500/20"></div>
-                    <div className="absolute inset-0 backdrop-blur-sm"></div>
-                    
-                    {/* Content */}
-                    <div className="relative text-center text-white">
-                      <GraduationCap className="w-16 h-16 mx-auto mb-2 drop-shadow-lg" />
-                      <div className="text-sm font-bold drop-shadow-lg">Klaudia</div>
-                      <div className="text-xs font-medium drop-shadow-lg">Komisarek</div>
-                      <div className="text-xs opacity-90 mt-1 drop-shadow-lg">M.A. English</div>
+                  <div className="w-full h-full rounded-full border-4 border-white shadow-lg relative overflow-hidden">
+                    <img 
+                      src="https://www.e-korepetycje.net/images/users/2355/235537/230_user-image.jpg?1606231609"
+                      alt="Klaudia Komisarek - Nauczycielka języków obcych"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to gradient placeholder if image fails to load
+                        e.target.style.display = 'none'
+                        e.target.nextElementSibling.style.display = 'flex'
+                      }}
+                    />
+                    {/* Fallback gradient placeholder */}
+                    <div className="w-full h-full bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-full flex items-center justify-center absolute inset-0" style={{display: 'none'}}>
+                      <div className="text-center text-white">
+                        <GraduationCap className="w-16 h-16 mx-auto mb-2 drop-shadow-lg" />
+                        <div className="text-sm font-bold drop-shadow-lg">Klaudia</div>
+                        <div className="text-xs font-medium drop-shadow-lg">Komisarek</div>
+                      </div>
                     </div>
-                    
-                    {/* Decorative elements */}
-                    <div className="absolute top-2 right-2 w-3 h-3 bg-white/30 rounded-full"></div>
-                    <div className="absolute bottom-4 left-3 w-2 h-2 bg-white/20 rounded-full"></div>
-                    <div className="absolute top-1/2 left-2 w-1.5 h-1.5 bg-white/25 rounded-full"></div>
                   </div>
                   
                   {/* Professional badge */}
