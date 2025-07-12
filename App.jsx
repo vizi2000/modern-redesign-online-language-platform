@@ -11,6 +11,8 @@ import WorkingCourses from '@/components/WorkingCourses.jsx'
 import LanguageLevelTest from '@/components/LanguageLevelTest.jsx'
 import BookingSystem from '@/components/BookingSystem.jsx'
 import PaymentGateway from '@/components/PaymentGateway.jsx'
+import GoogleAnalytics from '@/components/GoogleAnalytics.jsx'
+import BlogSection from '@/components/BlogSection.jsx'
 import { 
   Globe, 
   Clock, 
@@ -99,6 +101,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+      <GoogleAnalytics />
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50"></div>
@@ -170,6 +173,7 @@ function App() {
                 </a>
               </div>
               <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
+              <a href="#blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
               <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
               <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
               <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
@@ -203,6 +207,7 @@ function App() {
                 <a href="#home" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Strona główna</a>
                 <a href="#courses" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kursy</a>
                 <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
+                <a href="#blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
                 <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
                 <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
                 <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
@@ -387,6 +392,9 @@ function App() {
 
       {/* About Teacher Section */}
       <AboutTeacher />
+
+      {/* Blog Section */}
+      <BlogSection />
 
       {/* Language Level Test Section */}
       <LanguageLevelTest />

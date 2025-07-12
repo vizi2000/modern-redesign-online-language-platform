@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-12T16:57:16.313Z",
+  "timestamp": "2025-07-12T17:09:14.596Z",
   "version": "v13",
   "summary": {
     "total": 43,
@@ -12,37 +12,37 @@
       {
         "name": "Navigation link: Strona główna",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 9,
         "details": "Section with id=\"home\" found in App.jsx"
       },
       {
         "name": "Navigation link: Kursy",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 9,
         "details": "Section with id=\"courses\" found in AllCourses.jsx"
       },
       {
         "name": "Navigation link: O nauczycielu",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Section with id=\"o-nauczycielu\" found in AboutTeacher.jsx"
       },
       {
         "name": "Navigation link: Test poziomu",
         "status": "PASSED",
-        "duration": 2,
+        "duration": 38,
         "details": "Section with id=\"test-poziomowania\" found in LanguageLevelTest.jsx"
       },
       {
         "name": "Navigation link: Rezerwacja",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Section with id=\"rezerwacja\" found in BookingSystem.jsx"
       },
       {
         "name": "Navigation link: Cennik",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 21,
         "details": "Section with id=\"cennik\" found in Pricing.jsx"
       },
       {
@@ -66,7 +66,7 @@
       {
         "name": "Navigation link: Kontakt",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Section with id=\"kontakt\" found in ContactForm.jsx"
       }
     ],
@@ -98,7 +98,7 @@
       {
         "name": "Component exists: WorkingCourses.jsx",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 6,
         "details": "Component has 371 lines"
       },
       {
@@ -128,7 +128,7 @@
       {
         "name": "App.jsx imports all components",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "All 9 components imported successfully"
       },
       {
@@ -146,19 +146,19 @@
       {
         "name": "Ollama integration in Chatbot",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Ollama API integration found"
       },
       {
         "name": "Dockerfile exists and configured",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 3,
         "details": "Dockerfile properly configured for nginx deployment"
       },
       {
         "name": "nginx.conf production ready",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "All production configs found: gzip on, try_files, proxy_pass"
       },
       {
@@ -176,13 +176,13 @@
       {
         "name": "Documentation exists: CHANGELOG.md",
         "status": "PASSED",
-        "duration": 0,
-        "details": "521 lines, 19.9KB"
+        "duration": 2,
+        "details": "582 lines, 22.4KB"
       },
       {
         "name": "Documentation exists: EMAILJS_SETUP.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 8,
         "details": "187 lines, 4.5KB"
       },
       {
@@ -194,25 +194,25 @@
       {
         "name": "Documentation exists: OLLAMA_EXTERNAL_SETUP.md",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 2,
         "details": "203 lines, 4.5KB"
       },
       {
         "name": "Documentation exists: AGENTS.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 3,
         "details": "630 lines, 17.1KB"
       },
       {
         "name": "Documentation exists: TASKS.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "343 lines, 13.9KB"
       },
       {
         "name": "Documentation exists: PLANNING.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 4,
         "details": "594 lines, 18.4KB"
       }
     ],
@@ -221,7 +221,7 @@
         "name": "Build assets size check",
         "status": "PASSED",
         "duration": 0,
-        "details": "JS: 280.1KB, CSS: 53.3KB"
+        "details": "JS: 296.2KB, CSS: 54.1KB"
       },
       {
         "name": "Package.json dependencies check",
@@ -252,7 +252,7 @@
       {
         "name": "Viewport meta tag",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 5,
         "details": "Viewport meta tag configured correctly"
       }
     ],
@@ -266,7 +266,7 @@
       {
         "name": "CORS configuration in nginx",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 6,
         "details": "CORS headers configured in nginx"
       },
       {
