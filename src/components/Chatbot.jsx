@@ -14,7 +14,18 @@ const Chatbot = () => {
   ])
   const [inputText, setInputText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showSuggestions, setShowSuggestions] = useState(true)
   const messagesEndRef = useRef(null)
+
+  const suggestedQuestions = [
+    "Jak zacząć naukę angielskiego?",
+    "Ile kosztują lekcje?",
+    "Czy oferujecie bezpłatną lekcję próbną?",
+    "Jakie są godziny lekcji?",
+    "Jak sprawdzić mój poziom języka?",
+    "Czy lekcje są indywidualne?",
+    "Jakie materiały otrzymam?"
+  ]
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -24,12 +35,13 @@ const Chatbot = () => {
     scrollToBottom()
   }, [messages])
 
-  const sendMessage = async () => {
-    if (!inputText.trim() || isLoading) return
+  const sendMessage = async (messageText = null) => {
+    const textToSend = messageText || inputText
+    if (!textToSend.trim() || isLoading) return
 
     const userMessage = {
       id: Date.now(),
-      text: inputText,
+      text: textToSend,
       sender: 'user',
       timestamp: new Date()
     }
@@ -37,6 +49,7 @@ const Chatbot = () => {
     setMessages(prev => [...prev, userMessage])
     setInputText('')
     setIsLoading(true)
+    setShowSuggestions(false)
 
     try {
       // Use nginx proxy for Ollama API calls to handle CORS
@@ -51,7 +64,7 @@ const Chatbot = () => {
           model: 'llama3:8b',
           prompt: `Jesteś pomocnym asystentem językowym dla Akademii Poliglotki - szkoły języków online. Pomagasz uczniom w nauce języków obcych, odpowiadasz na pytania o kursy, metody nauki i motywujesz do nauki. Odpowiadaj w języku polskim, ale możesz również używać innych języków jeśli użytkownik o to poprosi. Bądź przyjazny, pomocny i zachęcający.
 
-Wiadomość użytkownika: ${inputText}
+Wiadomość użytkownika: ${textToSend}
 
 Odpowiedź:`,
           stream: false,
@@ -78,9 +91,36 @@ Odpowiedź:`,
       setMessages(prev => [...prev, botMessage])
     } catch (error) {
       console.error('Error:', error)
+      
+      // Fallback responses when AI is not available
+      const fallbackResponses = {
+        "ile kosztują lekcje": "Standardowa cena lekcji indywidualnej to 199 zł za 60 minut. Pierwsza lekcja próbna jest bezpłatna! 💰",
+        "jak zacząć": "Aby zacząć naukę, umów się na bezpłatną lekcję próbną. Sprawdzimy Twój poziom i dobierzemy odpowiedni program! 🚀",
+        "godziny": "Lekcje dostępne są od poniedziałku do piątku w godzinach 8:00-20:00. Terminy dostosowujemy do Twoich potrzeb! ⏰",
+        "poziom": "Przed rozpoczęciem kursu przeprowadzamy bezpłatny test poziomowania. To pomoże nam dobrać odpowiedni program nauki! 📊",
+        "bezpłatna": "Tak! Pierwsza lekcja próbna jest zawsze bezpłatna. To świetna okazja, żeby sprawdzić naszą metodę nauczania! 🎁",
+        "indywidualne": "Wszystkie nasze lekcje są prowadzone indywidualnie, dzięki czemu możemy dostosować tempo i metodę do Twoich potrzeb! 👥",
+        "materiały": "Po każdej lekcji otrzymujesz spersonalizowane materiały: notatki, ćwiczenia, listy słówek i zadania domowe! 📚"
+      }
+      
+      const userTextLower = textToSend.toLowerCase()
+      let responseText = "Przepraszam, asystent AI jest obecnie niedostępny. "
+      
+      // Try to find a relevant fallback response
+      for (const [keyword, response] of Object.entries(fallbackResponses)) {
+        if (userTextLower.includes(keyword)) {
+          responseText = response + "\n\nDla więcej informacji skontaktuj się z nami: kontakt@akademiapoliglotki.pl";
+          break;
+        }
+      }
+      
+      if (responseText === "Przepraszam, asystent AI jest obecnie niedostępny. ") {
+        responseText += "Skontaktuj się z nami bezpośrednio: kontakt@akademiapoliglotki.pl lub telefon +48 123 456 789. Odpowiemy na wszystkie Twoje pytania! 📞";
+      }
+      
       const errorMessage = {
         id: Date.now() + 1,
-        text: "Przepraszam, wystąpił problem z połączeniem. Upewnij się, że Ollama jest uruchomione lokalnie. Spróbuj ponownie.",
+        text: responseText,
         sender: 'bot',
         timestamp: new Date()
       }
@@ -154,6 +194,24 @@ Odpowiedź:`,
                 </div>
               </div>
             ))}
+
+            {/* Suggested Questions */}
+            {showSuggestions && messages.length === 1 && (
+              <div className="space-y-2">
+                <p className="text-xs text-slate-500 text-center">Sugerowane pytania:</p>
+                <div className="space-y-1">
+                  {suggestedQuestions.slice(0, 5).map((question, index) => (
+                    <button
+                      key={index}
+                      onClick={() => sendMessage(question)}
+                      className="w-full text-left p-2 text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors border border-blue-200"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             {isLoading && (
               <div className="flex justify-start">
                 <div className="bg-slate-100 border border-slate-200 p-3 rounded-2xl">

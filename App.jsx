@@ -3,6 +3,11 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import Chatbot from '@/components/Chatbot.jsx'
+import ContactForm from '@/components/ContactForm.jsx'
+import FAQ from '@/components/FAQ.jsx'
+import AboutTeacher from '@/components/AboutTeacher.jsx'
+import Pricing from '@/components/Pricing.jsx'
+import WorkingCourses from '@/components/WorkingCourses.jsx'
 import { 
   Globe, 
   Clock, 
@@ -18,7 +23,8 @@ import {
   Award,
   Users,
   Heart,
-  Zap
+  Zap,
+  HelpCircle
 } from 'lucide-react'
 import './App.css'
 
@@ -160,13 +166,17 @@ function App() {
                   Kursy <ChevronDown className="w-4 h-4 ml-1" />
                 </a>
               </div>
-              <a href="#about" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nas</a>
+              <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
+              <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
               <a href="#testimonials" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Opinie</a>
-              <a href="#contact" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kontakt</a>
-              <div className="flex items-center space-x-2">
-                <span className="text-2xl">🌐</span>
-              </div>
-              <Button className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg backdrop-blur-sm">
+              <a href="#faq" className="text-slate-700 hover:text-blue-600 transition-colors font-medium flex items-center">
+                <HelpCircle className="w-4 h-4 mr-1" />
+                FAQ
+              </a>
+              <a href="#kontakt" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kontakt</a>
+              <Button 
+                onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg backdrop-blur-sm">
                 Rozpocznij naukę
               </Button>
             </nav>
@@ -186,9 +196,14 @@ function App() {
               <nav className="flex flex-col space-y-4 pt-4">
                 <a href="#home" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Strona główna</a>
                 <a href="#courses" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kursy</a>
-                <a href="#about" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nas</a>
+                <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
+                <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
                 <a href="#testimonials" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Opinie</a>
-                <a href="#contact" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kontakt</a>
+                <a href="#faq" className="text-slate-700 hover:text-blue-600 transition-colors font-medium flex items-center">
+                  <HelpCircle className="w-4 h-4 mr-2" />
+                  FAQ
+                </a>
+                <a href="#kontakt" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kontakt</a>
                 <Button className="bg-gradient-to-r from-slate-700 to-blue-600 text-white w-full">
                   Rozpocznij naukę
                 </Button>
@@ -219,7 +234,10 @@ function App() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl backdrop-blur-sm">
+                <Button 
+                  size="lg" 
+                  onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl backdrop-blur-sm">
                   Zacznij za darmo
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -358,32 +376,14 @@ function App() {
         </div>
       </section>
 
-      {/* Courses Section */}
-      <section id="courses" className="py-16 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Nasze kursy językowe</h2>
-            <p className="text-xl text-gray-600">Wybierz język, który chcesz opanować</p>
-          </div>
+      {/* About Teacher Section */}
+      <AboutTeacher />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {languages.map((language, index) => (
-              <Card key={index} className="group hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer border-0 shadow-lg bg-white/80 backdrop-blur-sm overflow-hidden">
-                <CardContent className="p-6 text-center">
-                  <div className="text-6xl mb-4">{language.flag}</div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{language.name}</h3>
-                  <Badge variant="secondary" className="mb-4">{language.level}</Badge>
-                  <div className="text-2xl font-bold text-orange-600 mb-4">{language.price}</div>
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white transition-all duration-300">
-                    Wybierz kurs
-                  </Button>
-                </CardContent>
-                <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Pricing Section */}
+      <Pricing />
+
+      {/* Working Courses Section */}
+      <WorkingCourses />
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-16 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
@@ -425,7 +425,10 @@ function App() {
           <h2 className="text-4xl font-bold mb-4">Gotowy na pierwszą lekcję?</h2>
           <p className="text-xl mb-8 opacity-90">Dołącz do setek zadowolonych uczniów już dziś</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+            <Button 
+              size="lg" 
+              onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
               <Zap className="w-5 h-5 mr-2" />
               Pierwsza lekcja gratis
             </Button>
@@ -435,6 +438,12 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* Contact Form Section */}
+      <ContactForm />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4">
@@ -475,9 +484,9 @@ function App() {
             <div>
               <h3 className="font-semibold mb-4">Kontakt</h3>
               <div className="space-y-2 text-gray-400">
-                <p>📧 kontakt@akademiapoliglotki.pl</p>
-                <p>📱 +48 123 456 789</p>
-                <p>🌐 www.akademiapoliglotki.pl</p>
+                <p>📧 <a href="mailto:kontakt@akademiapoliglotki.pl" className="hover:text-white transition-colors">kontakt@akademiapoliglotki.pl</a></p>
+                <p>📱 <a href="tel:+48123456789" className="hover:text-white transition-colors">+48 123 456 789</a></p>
+                <p>🌐 <a href="https://www.akademiapoliglotki.pl" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">www.akademiapoliglotki.pl</a></p>
               </div>
             </div>
           </div>
