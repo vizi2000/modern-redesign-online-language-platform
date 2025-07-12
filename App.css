@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* UX Optimization Styles */
+.secondary-content {
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+  border-top: 1px solid #e2e8f0;
+}
+
+.secondary-content > section {
+  opacity: 0.95;
+}
+
+/* Improved visual hierarchy */
+.secondary-content h2 {
+  font-size: 1.875rem !important; /* Smaller than primary sections */
+}
+
 
 :root {
   --radius: 0.625rem;

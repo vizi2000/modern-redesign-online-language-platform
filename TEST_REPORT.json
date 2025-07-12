@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-12T17:21:21.650Z",
+  "timestamp": "2025-07-12T17:30:33.783Z",
   "version": "v13",
   "summary": {
     "total": 43,
@@ -18,7 +18,7 @@
       {
         "name": "Navigation link: Kursy",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Section with id=\"courses\" found in AllCourses.jsx"
       },
       {
@@ -30,7 +30,7 @@
       {
         "name": "Navigation link: Test poziomu",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 2,
         "details": "Section with id=\"test-poziomowania\" found in LanguageLevelTest.jsx"
       },
       {
@@ -42,13 +42,13 @@
       {
         "name": "Navigation link: Cennik",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Section with id=\"cennik\" found in Pricing.jsx"
       },
       {
         "name": "Navigation link: Płatności",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Section with id=\"platnosci\" found in PaymentGateway.jsx"
       },
       {
@@ -87,7 +87,7 @@
         "name": "Component exists: AboutTeacher.jsx",
         "status": "PASSED",
         "duration": 0,
-        "details": "Component has 379 lines"
+        "details": "Component has 380 lines"
       },
       {
         "name": "Component exists: Pricing.jsx",
@@ -152,7 +152,7 @@
       {
         "name": "Dockerfile exists and configured",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Dockerfile properly configured for nginx deployment"
       },
       {
@@ -182,7 +182,7 @@
       {
         "name": "Documentation exists: EMAILJS_SETUP.md",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "187 lines, 4.5KB"
       },
       {
@@ -194,7 +194,7 @@
       {
         "name": "Documentation exists: OLLAMA_EXTERNAL_SETUP.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "203 lines, 4.5KB"
       },
       {
@@ -212,7 +212,7 @@
       {
         "name": "Documentation exists: PLANNING.md",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "594 lines, 18.4KB"
       }
     ],
@@ -221,7 +221,7 @@
         "name": "Build assets size check",
         "status": "PASSED",
         "duration": 0,
-        "details": "JS: 318.0KB, CSS: 57.2KB"
+        "details": "JS: 322.0KB, CSS: 57.1KB"
       },
       {
         "name": "Package.json dependencies check",

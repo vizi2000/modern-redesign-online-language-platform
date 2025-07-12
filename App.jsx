@@ -16,6 +16,7 @@ import BlogSection from '@/components/BlogSection.jsx'
 import FreeMaterials from '@/components/FreeMaterials.jsx'
 import Newsletter from '@/components/Newsletter.jsx'
 import NewsletterWidget from '@/components/NewsletterWidget.jsx'
+import StickyMobileCTA from '@/components/StickyMobileCTA.jsx'
 import { 
   Globe, 
   Clock, 
@@ -32,7 +33,8 @@ import {
   Users,
   Heart,
   Zap,
-  HelpCircle
+  HelpCircle,
+  Gift
 } from 'lucide-react'
 import './App.css'
 
@@ -167,31 +169,29 @@ function App() {
               </span>
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - Simplified */}
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#home" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Strona główna</a>
               <div className="relative group">
                 <a href="#courses" className="text-slate-700 hover:text-blue-600 transition-colors flex items-center font-medium">
                   Kursy <ChevronDown className="w-4 h-4 ml-1" />
                 </a>
+                {/* Dropdown menu for secondary options */}
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="py-2">
+                    <a href="#materialy" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors">Darmowe materiały</a>
+                    <a href="#test-poziomowania" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors">Test poziomu</a>
+                    <a href="#cennik" className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors">Cennik</a>
+                  </div>
+                </div>
               </div>
               <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
               <a href="#blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
-              <a href="#materialy" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Materiały</a>
-              <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
-              <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
-              <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
-              <a href="#platnosci" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Płatności</a>
-              <a href="#testimonials" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Opinie</a>
-              <a href="#faq" className="text-slate-700 hover:text-blue-600 transition-colors font-medium flex items-center">
-                <HelpCircle className="w-4 h-4 mr-1" />
-                FAQ
-              </a>
               <a href="#kontakt" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kontakt</a>
               <Button 
-                onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('rezerwacja')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg backdrop-blur-sm">
-                Rozpocznij naukę
+                Umów lekcję próbną
               </Button>
             </nav>
 
@@ -204,7 +204,7 @@ function App() {
             </button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Simplified */}
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t border-slate-200/50">
               <nav className="flex flex-col space-y-4 pt-4">
@@ -212,19 +212,20 @@ function App() {
                 <a href="#courses" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kursy</a>
                 <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
                 <a href="#blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
-                <a href="#materialy" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Materiały</a>
-                <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
-                <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
-                <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
-                <a href="#platnosci" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Płatności</a>
-                <a href="#testimonials" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Opinie</a>
-                <a href="#faq" className="text-slate-700 hover:text-blue-600 transition-colors font-medium flex items-center">
-                  <HelpCircle className="w-4 h-4 mr-2" />
-                  FAQ
-                </a>
                 <a href="#kontakt" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kontakt</a>
-                <Button className="bg-gradient-to-r from-slate-700 to-blue-600 text-white w-full">
-                  Rozpocznij naukę
+                <div className="border-t border-slate-200 pt-4 mt-4">
+                  <p className="text-xs text-slate-500 mb-2">Dodatkowe</p>
+                  <a href="#materialy" className="text-slate-600 hover:text-blue-600 transition-colors text-sm block py-1">Darmowe materiały</a>
+                  <a href="#test-poziomowania" className="text-slate-600 hover:text-blue-600 transition-colors text-sm block py-1">Test poziomu</a>
+                  <a href="#cennik" className="text-slate-600 hover:text-blue-600 transition-colors text-sm block py-1">Cennik</a>
+                </div>
+                <Button 
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    document.getElementById('rezerwacja')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="bg-gradient-to-r from-slate-700 to-blue-600 text-white w-full mt-4">
+                  Umów lekcję próbną
                 </Button>
               </nav>
             </div>
@@ -398,28 +399,7 @@ function App() {
       {/* About Teacher Section */}
       <AboutTeacher />
 
-      {/* Blog Section */}
-      <BlogSection />
-
-      {/* Free Materials Section */}
-      <FreeMaterials />
-
-      {/* Language Level Test Section */}
-      <LanguageLevelTest />
-
-      {/* Booking System Section */}
-      <BookingSystem />
-
-      {/* Pricing Section */}
-      <Pricing />
-
-      {/* Payment Gateway Section */}
-      <PaymentGateway />
-
-      {/* Working Courses Section */}
-      <WorkingCourses />
-
-      {/* Testimonials Section */}
+      {/* Testimonials Section - Moved up for trust building */}
       <section id="testimonials" className="py-16 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="container mx-auto">
           <div className="text-center mb-12">
@@ -453,10 +433,7 @@ function App() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <Newsletter />
-
-      {/* CTA Section */}
+      {/* Primary CTA Section - Moved up for better conversion */}
       <section className="py-16 px-4 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4">Gotowy na pierwszą lekcję?</h2>
@@ -475,6 +452,103 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Booking System Section - Primary conversion point */}
+      <BookingSystem />
+
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Secondary Content - Explore More Section */}
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              Odkryj więcej możliwości
+            </h2>
+            <p className="text-lg text-slate-600">
+              Sprawdź dodatkowe zasoby i narzędzia, które pomogą Ci w nauce języków
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Quick Course Preview */}
+            <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">Kursy językowe</h3>
+                <p className="text-slate-600 mb-4">5 języków dostępnych: angielski, francuski, niemiecki, hiszpański, włoski</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full"
+                >
+                  Zobacz kursy
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Free Materials Preview */}
+            <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Gift className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">Darmowe materiały</h3>
+                <p className="text-slate-600 mb-4">6 wartościowych materiałów do pobrania za darmo</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => document.getElementById('materialy')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full"
+                >
+                  Pobierz materiały
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Blog Preview */}
+            <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">Blog o językach</h3>
+                <p className="text-slate-600 mb-4">Artykuły, porady i motywacja do nauki</p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full"
+                >
+                  Czytaj blog
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Secondary Sections - Lower Priority */}
+      <div className="secondary-content">
+        {/* Working Courses Section */}
+        <WorkingCourses />
+        
+        {/* Free Materials Section */}
+        <FreeMaterials />
+        
+        {/* Blog Section */}
+        <BlogSection />
+        
+        {/* Language Level Test Section */}
+        <LanguageLevelTest />
+        
+        {/* Pricing Section */}
+        <Pricing />
+        
+        {/* Payment Gateway Section */}
+        <PaymentGateway />
+      </div>
 
       {/* FAQ Section */}
       <FAQ />
@@ -537,6 +611,9 @@ function App() {
       
       {/* AI Chatbot */}
       <Chatbot />
+      
+      {/* Sticky Mobile CTA */}
+      <StickyMobileCTA />
     </div>
   )
 }
