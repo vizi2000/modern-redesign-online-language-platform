@@ -8,6 +8,9 @@ import FAQ from '@/components/FAQ.jsx'
 import AboutTeacher from '@/components/AboutTeacher.jsx'
 import Pricing from '@/components/Pricing.jsx'
 import WorkingCourses from '@/components/WorkingCourses.jsx'
+import LanguageLevelTest from '@/components/LanguageLevelTest.jsx'
+import BookingSystem from '@/components/BookingSystem.jsx'
+import PaymentGateway from '@/components/PaymentGateway.jsx'
 import { 
   Globe, 
   Clock, 
@@ -167,7 +170,10 @@ function App() {
                 </a>
               </div>
               <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
+              <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
+              <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
               <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
+              <a href="#platnosci" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Płatności</a>
               <a href="#testimonials" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Opinie</a>
               <a href="#faq" className="text-slate-700 hover:text-blue-600 transition-colors font-medium flex items-center">
                 <HelpCircle className="w-4 h-4 mr-1" />
@@ -197,7 +203,10 @@ function App() {
                 <a href="#home" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Strona główna</a>
                 <a href="#courses" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kursy</a>
                 <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
+                <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
+                <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
                 <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
+                <a href="#platnosci" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Płatności</a>
                 <a href="#testimonials" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Opinie</a>
                 <a href="#faq" className="text-slate-700 hover:text-blue-600 transition-colors font-medium flex items-center">
                   <HelpCircle className="w-4 h-4 mr-2" />
@@ -236,7 +245,7 @@ function App() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('rezerwacja')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl backdrop-blur-sm">
                   Zacznij za darmo
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -379,8 +388,17 @@ function App() {
       {/* About Teacher Section */}
       <AboutTeacher />
 
+      {/* Language Level Test Section */}
+      <LanguageLevelTest />
+
+      {/* Booking System Section */}
+      <BookingSystem />
+
       {/* Pricing Section */}
       <Pricing />
+
+      {/* Payment Gateway Section */}
+      <PaymentGateway />
 
       {/* Working Courses Section */}
       <WorkingCourses />
@@ -427,7 +445,7 @@ function App() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               size="lg" 
-              onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('rezerwacja')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
               <Zap className="w-5 h-5 mr-2" />
               Pierwsza lekcja gratis

@@ -52,79 +52,150 @@ const Chatbot = () => {
     setShowSuggestions(false)
 
     try {
-      // Use nginx proxy for Ollama API calls to handle CORS
-      const ollamaUrl = '/api/ollama/generate'
+      // Check if we're on localhost or external IP
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      const isExternalIP = window.location.hostname === '194.181.240.37'
       
-      const response = await fetch(ollamaUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'llama3:8b',
-          prompt: `Jesteś pomocnym asystentem językowym dla Akademii Poliglotki - szkoły języków online. Pomagasz uczniom w nauce języków obcych, odpowiadasz na pytania o kursy, metody nauki i motywujesz do nauki. Odpowiadaj w języku polskim, ale możesz również używać innych języków jeśli użytkownik o to poprosi. Bądź przyjazny, pomocny i zachęcający.
+      let ollamaUrl
+      if (isLocalhost) {
+        // For localhost - use nginx proxy to local Ollama
+        ollamaUrl = '/api/ollama/generate'
+      } else if (isExternalIP) {
+        // For external IP - use nginx proxy (same as localhost)
+        ollamaUrl = '/api/ollama/generate'
+      } else {
+        throw new Error('Unknown host - using fallback mode')
+      }
+      
+      if (isLocalhost || isExternalIP) {
+        // Try Ollama API for both localhost and external IP connections
+        
+        const response = await fetch(ollamaUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: isExternalIP ? 'cors' : 'same-origin',
+          body: JSON.stringify({
+            model: 'llama3:8b',
+            prompt: `Jesteś pomocnym asystentem językowym dla Akademii Poliglotki - szkoły języków online. Pomagasz uczniom w nauce języków obcych, odpowiadasz na pytania o kursy, metody nauki i motywujesz do nauki. Odpowiadaj w języku polskim, ale możesz również używać innych języków jeśli użytkownik o to poprosi. Bądź przyjazny, pomocny i zachęcający.
 
 Wiadomość użytkownika: ${textToSend}
 
 Odpowiedź:`,
-          stream: false,
-          options: {
-            temperature: 0.7,
-            max_tokens: 500
-          }
-        }),
-      })
+            stream: false,
+            options: {
+              temperature: 0.7,
+              max_tokens: 500
+            }
+          }),
+        })
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
+        if (!response.ok) {
+          throw new Error('Ollama API not available')
+        }
+
+        const data = await response.json()
+        
+        const botMessage = {
+          id: Date.now() + 1,
+          text: data.response,
+          sender: 'bot',
+          timestamp: new Date()
+        }
+
+        setMessages(prev => [...prev, botMessage])
+      } else {
+        // For external IPs, immediately use fallback response
+        throw new Error('External IP - using fallback mode')
       }
-
-      const data = await response.json()
-      
-      const botMessage = {
-        id: Date.now() + 1,
-        text: data.response,
-        sender: 'bot',
-        timestamp: new Date()
-      }
-
-      setMessages(prev => [...prev, botMessage])
     } catch (error) {
       console.error('Error:', error)
       
-      // Fallback responses when AI is not available
+      // Enhanced fallback responses when AI is not available
       const fallbackResponses = {
-        "ile kosztują lekcje": "Standardowa cena lekcji indywidualnej to 199 zł za 60 minut. Pierwsza lekcja próbna jest bezpłatna! 💰",
-        "jak zacząć": "Aby zacząć naukę, umów się na bezpłatną lekcję próbną. Sprawdzimy Twój poziom i dobierzemy odpowiedni program! 🚀",
-        "godziny": "Lekcje dostępne są od poniedziałku do piątku w godzinach 8:00-20:00. Terminy dostosowujemy do Twoich potrzeb! ⏰",
-        "poziom": "Przed rozpoczęciem kursu przeprowadzamy bezpłatny test poziomowania. To pomoże nam dobrać odpowiedni program nauki! 📊",
-        "bezpłatna": "Tak! Pierwsza lekcja próbna jest zawsze bezpłatna. To świetna okazja, żeby sprawdzić naszą metodę nauczania! 🎁",
-        "indywidualne": "Wszystkie nasze lekcje są prowadzone indywidualnie, dzięki czemu możemy dostosować tempo i metodę do Twoich potrzeb! 👥",
-        "materiały": "Po każdej lekcji otrzymujesz spersonalizowane materiały: notatki, ćwiczenia, listy słówek i zadania domowe! 📚"
+        "ile kosztują lekcje": "💰 **Cennik lekcji indywidualnych:**\n• Pojedyncza lekcja: 199 zł/60 min\n• Pakiet 4 lekcji: 720 zł (180 zł/lekcja)\n• Pakiet 8 lekcji: 1360 zł (170 zł/lekcja)\n• **Pierwsza lekcja próbna GRATIS!** 🎁",
+        
+        "jak zacząć": "🚀 **Jak rozpocząć naukę:**\n1. Umów bezpłatną lekcję próbną\n2. Zrobimy test poziomu języka\n3. Ustalimy cel i plan nauki\n4. Rozpoczniemy regularną naukę\n\n[Kliknij tutaj aby umówić konsultację](#kontakt)",
+        
+        "godziny": "⏰ **Godziny dostępności:**\n• Pon-Pt: 8:00-20:00\n• Sobota: 9:00-15:00\n• Niedziela: na umówienie\n\nLekcje 7 dni w tygodniu według Twoich potrzeb!",
+        
+        "test poziomu": "📊 **Test poziomu języka:**\nMamy darmowy 5-minutowy test dla 5 języków (angielski, francuski, niemiecki, hiszpański, włoski). Test ocenia poziom A1-C2 i daje rekomendacje kursów.\n\n[Zrób test teraz](#test-poziomowania)",
+        
+        "języki": "🌍 **Dostępne języki:**\n• 🇬🇧 Angielski\n• 🇫🇷 Francuski  \n• 🇩🇪 Niemiecki\n• 🇪🇸 Hiszpański\n• 🇮🇹 Włoski\n\nWszystkie poziomy od A1 do C2!",
+        
+        "bezpłatna lekcja": "🎁 **Bezpłatna lekcja próbna:**\n• 60 minut z doświadczonym lektorem\n• Test poziomu i analiza potrzeb\n• Indywidualny plan nauki\n• Bez zobowiązań\n\n[Umów się teraz](#kontakt)",
+        
+        "materiały": "📚 **Materiały do nauki:**\n• Interaktywne podręczniki online\n• Nagrania audio z native speakerami\n• Ćwiczenia gramatyczne\n• Gry edukacyjne\n• Dostęp 24/7 do platformy",
+        
+        "metody": "🎯 **Metody nauczania:**\n• Komunikacyjna metoda nauki\n• Praktyczne konwersacje\n• Gramatyka w kontekście\n• Multimedia i technologie\n• Dostosowanie do stylu uczenia",
+        
+        "poziom": "📊 **Test poziomu:**\nPrzeprowadzamy bezpłatny test poziomowania przed rozpoczęciem kursu. Pomaga dobrać odpowiedni program nauki!\n\n[Zrób test online](#test-poziomowania)",
+        
+        "bezpłatna": "🎁 **Bezpłatna lekcja próbna:**\nTak! Pierwsza lekcja (60 min) jest zawsze bezpłatna. Świetna okazja żeby sprawdzić naszą metodę!\n\n[Umów się teraz](#kontakt)",
+        
+        "indywidualne": "👥 **Lekcje indywidualne:**\nWszystkie lekcje prowadzone indywidualnie - dostosowujemy tempo i metodę do Twoich potrzeb!",
+        
+        "kontakt": "📞 **Kontakt:**\n• Email: kontakt@akademiapoliglotki.pl\n• Telefon: +48 123 456 789\n• Formularz kontaktowy na stronie\n\n[Napisz do nas](#kontakt)",
+        
+        "default": "🤖 **Asystent AI (tryb offline)**\n\nDziękuję za pytanie! Aktualnie działam w trybie podstawowym. Oto najczęściej zadawane pytania:\n\n• Ile kosztują lekcje?\n• Jak zacząć naukę?\n• Jakie są godziny lekcji?\n• Czy oferujecie bezpłatną lekcję?\n• Jak sprawdzić poziom języka?\n\nMożesz też skontaktować się bezpośrednio:\n📧 kontakt@akademiapoliglotki.pl\n📞 +48 123 456 789"
       }
       
-      const userTextLower = textToSend.toLowerCase()
-      let responseText = "Przepraszam, asystent AI jest obecnie niedostępny. "
-      
-      // Try to find a relevant fallback response
-      for (const [keyword, response] of Object.entries(fallbackResponses)) {
-        if (userTextLower.includes(keyword)) {
-          responseText = response + "\n\nDla więcej informacji skontaktuj się z nami: kontakt@akademiapoliglotki.pl";
-          break;
+      // Smart response matching
+      const findBestResponse = (query) => {
+        const lowerQuery = query.toLowerCase()
+        
+        // Exact keyword matching
+        for (const [key, response] of Object.entries(fallbackResponses)) {
+          if (key !== 'default' && lowerQuery.includes(key)) {
+            return response
+          }
         }
+        
+        // Fuzzy matching for common variations
+        if (lowerQuery.includes('cena') || lowerQuery.includes('koszt') || lowerQuery.includes('ile') || lowerQuery.includes('płacić')) {
+          return fallbackResponses["ile kosztują lekcje"]
+        }
+        if (lowerQuery.includes('zaczać') || lowerQuery.includes('rozpocząć') || lowerQuery.includes('start')) {
+          return fallbackResponses["jak zacząć"]
+        }
+        if (lowerQuery.includes('godzin') || lowerQuery.includes('czas') || lowerQuery.includes('kiedy')) {
+          return fallbackResponses["godziny"]
+        }
+        if (lowerQuery.includes('język') || lowerQuery.includes('course') || lowerQuery.includes('kurs')) {
+          return fallbackResponses["języki"]
+        }
+        if (lowerQuery.includes('darmowa') || lowerQuery.includes('gratis') || lowerQuery.includes('bezpłat')) {
+          return fallbackResponses["bezpłatna lekcja"]
+        }
+        if (lowerQuery.includes('test') || lowerQuery.includes('poziom') || lowerQuery.includes('sprawdz')) {
+          return fallbackResponses["test poziomu"]
+        }
+        if (lowerQuery.includes('materiał') || lowerQuery.includes('podręcznik') || lowerQuery.includes('książka')) {
+          return fallbackResponses["materiały"]
+        }
+        if (lowerQuery.includes('metod') || lowerQuery.includes('jak uczysz') || lowerQuery.includes('sposób')) {
+          return fallbackResponses["metody"]
+        }
+        if (lowerQuery.includes('indywidu') || lowerQuery.includes('1:1') || lowerQuery.includes('grupowe')) {
+          return fallbackResponses["indywidualne"]
+        }
+        if (lowerQuery.includes('kontakt') || lowerQuery.includes('napisać') || lowerQuery.includes('email') || lowerQuery.includes('telefon')) {
+          return fallbackResponses["kontakt"]
+        }
+        
+        return fallbackResponses["default"]
       }
       
-      if (responseText === "Przepraszam, asystent AI jest obecnie niedostępny. ") {
-        responseText += "Skontaktuj się z nami bezpośrednio: kontakt@akademiapoliglotki.pl lub telefon +48 123 456 789. Odpowiemy na wszystkie Twoje pytania! 📞";
-      }
+      const responseText = findBestResponse(textToSend)
       
-      const errorMessage = {
+      const botMessage = {
         id: Date.now() + 1,
         text: responseText,
         sender: 'bot',
         timestamp: new Date()
       }
-      setMessages(prev => [...prev, errorMessage])
+      setMessages(prev => [...prev, botMessage])
     } finally {
       setIsLoading(false)
     }

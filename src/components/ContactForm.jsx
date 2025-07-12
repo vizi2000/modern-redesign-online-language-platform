@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -74,11 +75,25 @@ const ContactForm = () => {
     setSubmitStatus(null)
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // EmailJS configuration
+      const serviceID = 'service_akademia_poliglotki'
+      const templateID = 'template_contact_form'
+      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY'
       
-      // Here you would normally send the form data to your backend
-      console.log('Form submitted:', formData)
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Nie podano',
+        language: formData.language || 'Nie wybrano',
+        level: formData.level || 'Nie wybrano',
+        preferred_contact: formData.preferredContact === 'email' ? 'Email' : 'Telefon',
+        message: formData.message,
+        to_email: 'kontakt@akademiapoliglotki.pl'
+      }
+      
+      // Send email via EmailJS
+      await emailjs.send(serviceID, templateID, templateParams, publicKey)
       
       setSubmitStatus('success')
       setFormData({
@@ -91,6 +106,7 @@ const ContactForm = () => {
         preferredContact: 'email'
       })
     } catch (error) {
+      console.error('EmailJS Error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)

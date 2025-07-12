@@ -1,0 +1,281 @@
+{
+  "timestamp": "2025-07-12T16:57:16.313Z",
+  "version": "v13",
+  "summary": {
+    "total": 43,
+    "passed": 43,
+    "failed": 0,
+    "successRate": "100.0%"
+  },
+  "categories": {
+    "navigation": [
+      {
+        "name": "Navigation link: Strona główna",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Section with id=\"home\" found in App.jsx"
+      },
+      {
+        "name": "Navigation link: Kursy",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "Section with id=\"courses\" found in AllCourses.jsx"
+      },
+      {
+        "name": "Navigation link: O nauczycielu",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "Section with id=\"o-nauczycielu\" found in AboutTeacher.jsx"
+      },
+      {
+        "name": "Navigation link: Test poziomu",
+        "status": "PASSED",
+        "duration": 2,
+        "details": "Section with id=\"test-poziomowania\" found in LanguageLevelTest.jsx"
+      },
+      {
+        "name": "Navigation link: Rezerwacja",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "Section with id=\"rezerwacja\" found in BookingSystem.jsx"
+      },
+      {
+        "name": "Navigation link: Cennik",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "Section with id=\"cennik\" found in Pricing.jsx"
+      },
+      {
+        "name": "Navigation link: Płatności",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "Section with id=\"platnosci\" found in PaymentGateway.jsx"
+      },
+      {
+        "name": "Navigation link: Opinie",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Section with id=\"testimonials\" found in App.jsx"
+      },
+      {
+        "name": "Navigation link: FAQ",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Section with id=\"faq\" found in FAQ.jsx"
+      },
+      {
+        "name": "Navigation link: Kontakt",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Section with id=\"kontakt\" found in ContactForm.jsx"
+      }
+    ],
+    "functionality": [
+      {
+        "name": "Component exists: ContactForm.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 399 lines"
+      },
+      {
+        "name": "Component exists: FAQ.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 347 lines"
+      },
+      {
+        "name": "Component exists: AboutTeacher.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 379 lines"
+      },
+      {
+        "name": "Component exists: Pricing.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 463 lines"
+      },
+      {
+        "name": "Component exists: WorkingCourses.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 371 lines"
+      },
+      {
+        "name": "Component exists: LanguageLevelTest.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 523 lines"
+      },
+      {
+        "name": "Component exists: BookingSystem.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 570 lines"
+      },
+      {
+        "name": "Component exists: PaymentGateway.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 460 lines"
+      },
+      {
+        "name": "Component exists: Chatbot.jsx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Component has 330 lines"
+      },
+      {
+        "name": "App.jsx imports all components",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "All 9 components imported successfully"
+      },
+      {
+        "name": "EmailJS integration in ContactForm",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "EmailJS import and integration found"
+      },
+      {
+        "name": "Stripe integration in PaymentGateway",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Stripe integration found"
+      },
+      {
+        "name": "Ollama integration in Chatbot",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Ollama API integration found"
+      },
+      {
+        "name": "Dockerfile exists and configured",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Dockerfile properly configured for nginx deployment"
+      },
+      {
+        "name": "nginx.conf production ready",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "All production configs found: gzip on, try_files, proxy_pass"
+      },
+      {
+        "name": "Build process configured",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Build and dev scripts configured"
+      },
+      {
+        "name": "Documentation exists: README.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "342 lines, 10.0KB"
+      },
+      {
+        "name": "Documentation exists: CHANGELOG.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "521 lines, 19.9KB"
+      },
+      {
+        "name": "Documentation exists: EMAILJS_SETUP.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "187 lines, 4.5KB"
+      },
+      {
+        "name": "Documentation exists: STRIPE_SETUP.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "344 lines, 8.5KB"
+      },
+      {
+        "name": "Documentation exists: OLLAMA_EXTERNAL_SETUP.md",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "203 lines, 4.5KB"
+      },
+      {
+        "name": "Documentation exists: AGENTS.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "630 lines, 17.1KB"
+      },
+      {
+        "name": "Documentation exists: TASKS.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "343 lines, 13.9KB"
+      },
+      {
+        "name": "Documentation exists: PLANNING.md",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "594 lines, 18.4KB"
+      }
+    ],
+    "performance": [
+      {
+        "name": "Build assets size check",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "JS: 280.1KB, CSS: 53.3KB"
+      },
+      {
+        "name": "Package.json dependencies check",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "8 dependencies, 11 dev dependencies"
+      },
+      {
+        "name": "Critical dependencies present",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "All 4 critical dependencies present"
+      }
+    ],
+    "responsiveness": [
+      {
+        "name": "Tailwind CSS classes usage",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Found 6 responsive patterns: md:, lg:, sm:, grid-cols-, flex-col, flex-row"
+      },
+      {
+        "name": "Mobile menu implementation",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Mobile menu state management found"
+      },
+      {
+        "name": "Viewport meta tag",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Viewport meta tag configured correctly"
+      }
+    ],
+    "security": [
+      {
+        "name": "No hardcoded secrets in code",
+        "status": "PASSED",
+        "duration": 1,
+        "details": "No hardcoded secrets found"
+      },
+      {
+        "name": "CORS configuration in nginx",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "CORS headers configured in nginx"
+      },
+      {
+        "name": "Input validation in forms",
+        "status": "PASSED",
+        "duration": 0,
+        "details": "Form validation found"
+      }
+    ]
+  },
+  "recommendations": []
+}
