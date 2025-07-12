@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-12T17:13:58.001Z",
+  "timestamp": "2025-07-12T17:21:21.650Z",
   "version": "v13",
   "summary": {
     "total": 43,
@@ -30,7 +30,7 @@
       {
         "name": "Navigation link: Test poziomu",
         "status": "PASSED",
-        "duration": 2,
+        "duration": 1,
         "details": "Section with id=\"test-poziomowania\" found in LanguageLevelTest.jsx"
       },
       {
@@ -48,7 +48,7 @@
       {
         "name": "Navigation link: Płatności",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Section with id=\"platnosci\" found in PaymentGateway.jsx"
       },
       {
@@ -60,13 +60,13 @@
       {
         "name": "Navigation link: FAQ",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Section with id=\"faq\" found in FAQ.jsx"
       },
       {
         "name": "Navigation link: Kontakt",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Section with id=\"kontakt\" found in ContactForm.jsx"
       }
     ],
@@ -98,7 +98,7 @@
       {
         "name": "Component exists: WorkingCourses.jsx",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Component has 371 lines"
       },
       {
@@ -146,13 +146,13 @@
       {
         "name": "Ollama integration in Chatbot",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "Ollama API integration found"
       },
       {
         "name": "Dockerfile exists and configured",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Dockerfile properly configured for nginx deployment"
       },
       {
@@ -170,7 +170,7 @@
       {
         "name": "Documentation exists: README.md",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "342 lines, 10.0KB"
       },
       {
@@ -182,7 +182,7 @@
       {
         "name": "Documentation exists: EMAILJS_SETUP.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "187 lines, 4.5KB"
       },
       {
@@ -200,7 +200,7 @@
       {
         "name": "Documentation exists: AGENTS.md",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "630 lines, 17.1KB"
       },
       {
@@ -212,7 +212,7 @@
       {
         "name": "Documentation exists: PLANNING.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "594 lines, 18.4KB"
       }
     ],
@@ -221,7 +221,7 @@
         "name": "Build assets size check",
         "status": "PASSED",
         "duration": 0,
-        "details": "JS: 307.7KB, CSS: 55.1KB"
+        "details": "JS: 318.0KB, CSS: 57.2KB"
       },
       {
         "name": "Package.json dependencies check",
@@ -246,7 +246,7 @@
       {
         "name": "Mobile menu implementation",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Mobile menu state management found"
       },
       {
@@ -260,7 +260,7 @@
       {
         "name": "No hardcoded secrets in code",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "No hardcoded secrets found"
       },
       {

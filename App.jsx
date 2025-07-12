@@ -14,6 +14,8 @@ import PaymentGateway from '@/components/PaymentGateway.jsx'
 import GoogleAnalytics from '@/components/GoogleAnalytics.jsx'
 import BlogSection from '@/components/BlogSection.jsx'
 import FreeMaterials from '@/components/FreeMaterials.jsx'
+import Newsletter from '@/components/Newsletter.jsx'
+import NewsletterWidget from '@/components/NewsletterWidget.jsx'
 import { 
   Globe, 
   Clock, 
@@ -451,6 +453,9 @@ function App() {
         </div>
       </section>
 
+      {/* Newsletter Section */}
+      <Newsletter />
+
       {/* CTA Section */}
       <section className="py-16 px-4 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="container mx-auto text-center">
@@ -515,11 +520,12 @@ function App() {
             
             <div>
               <h3 className="font-semibold mb-4">Kontakt</h3>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-gray-400 mb-6">
                 <p>📧 <a href="mailto:kontakt@akademiapoliglotki.pl" className="hover:text-white transition-colors">kontakt@akademiapoliglotki.pl</a></p>
                 <p>📱 <a href="tel:+48123456789" className="hover:text-white transition-colors">+48 123 456 789</a></p>
                 <p>🌐 <a href="https://www.akademiapoliglotki.pl" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">www.akademiapoliglotki.pl</a></p>
               </div>
+              <NewsletterWidget variant="footer" />
             </div>
           </div>
           

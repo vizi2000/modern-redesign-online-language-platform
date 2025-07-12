@@ -490,7 +490,7 @@ Nauka niemieckiego to podróż przez kulturę!`,
           </div>
         </div>
 
-        {/* Newsletter Signup */}
+        {/* Newsletter CTA */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-8 text-center text-white">
           <h3 className="text-2xl font-bold mb-4">
             Nie przegap nowych artykułów!
@@ -498,18 +498,15 @@ Nauka niemieckiego to podróż przez kulturę!`,
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
             Zapisz się do newslettera i otrzymuj najnowsze porady o nauce języków, ciekawostki kulturowe i motywację prosto do swojej skrzynki.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Twój adres email"
-              className="flex-1 px-4 py-3 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
-            />
-            <Button className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 font-semibold">
-              Zapisz się
-            </Button>
-          </div>
+          <Button 
+            onClick={() => document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 font-semibold"
+          >
+            <ArrowRight className="w-5 h-5 mr-2" />
+            Zapisz się do newslettera
+          </Button>
           <p className="text-xs text-blue-200 mt-4">
-            Możesz się wypisać w każdym momencie. Szanujemy Twoją prywatność.
+            Dołącz do 2,500+ uczniów otrzymujących cotygodniowe porady
           </p>
         </div>
       </div>

@@ -241,7 +241,7 @@ const FreeMaterials = () => {
                   </Button>
                 </form>
                 <p className="text-xs text-blue-200 mt-4">
-                  * Materiały zostaną wysłane na podany email. Możesz się wypisać w każdym momencie.
+                  * Materiały zostaną wysłane na podany email. Automatycznie zapiszesz się też do newslettera.
                 </p>
               </CardContent>
             </Card>
