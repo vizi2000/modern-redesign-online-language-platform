@@ -13,6 +13,7 @@ import BookingSystem from '@/components/BookingSystem.jsx'
 import PaymentGateway from '@/components/PaymentGateway.jsx'
 import GoogleAnalytics from '@/components/GoogleAnalytics.jsx'
 import BlogSection from '@/components/BlogSection.jsx'
+import FreeMaterials from '@/components/FreeMaterials.jsx'
 import { 
   Globe, 
   Clock, 
@@ -174,6 +175,7 @@ function App() {
               </div>
               <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
               <a href="#blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
+              <a href="#materialy" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Materiały</a>
               <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
               <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
               <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
@@ -208,6 +210,7 @@ function App() {
                 <a href="#courses" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Kursy</a>
                 <a href="#o-nauczycielu" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">O nauczycielu</a>
                 <a href="#blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
+                <a href="#materialy" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Materiały</a>
                 <a href="#test-poziomowania" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Test poziomu</a>
                 <a href="#rezerwacja" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Rezerwacja</a>
                 <a href="#cennik" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">Cennik</a>
@@ -395,6 +398,9 @@ function App() {
 
       {/* Blog Section */}
       <BlogSection />
+
+      {/* Free Materials Section */}
+      <FreeMaterials />
 
       {/* Language Level Test Section */}
       <LanguageLevelTest />

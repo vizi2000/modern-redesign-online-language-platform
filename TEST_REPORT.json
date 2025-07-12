@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-12T17:09:14.596Z",
+  "timestamp": "2025-07-12T17:13:58.001Z",
   "version": "v13",
   "summary": {
     "total": 43,
@@ -12,13 +12,13 @@
       {
         "name": "Navigation link: Strona główna",
         "status": "PASSED",
-        "duration": 9,
+        "duration": 0,
         "details": "Section with id=\"home\" found in App.jsx"
       },
       {
         "name": "Navigation link: Kursy",
         "status": "PASSED",
-        "duration": 9,
+        "duration": 0,
         "details": "Section with id=\"courses\" found in AllCourses.jsx"
       },
       {
@@ -30,19 +30,19 @@
       {
         "name": "Navigation link: Test poziomu",
         "status": "PASSED",
-        "duration": 38,
+        "duration": 2,
         "details": "Section with id=\"test-poziomowania\" found in LanguageLevelTest.jsx"
       },
       {
         "name": "Navigation link: Rezerwacja",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "Section with id=\"rezerwacja\" found in BookingSystem.jsx"
       },
       {
         "name": "Navigation link: Cennik",
         "status": "PASSED",
-        "duration": 21,
+        "duration": 1,
         "details": "Section with id=\"cennik\" found in Pricing.jsx"
       },
       {
@@ -98,7 +98,7 @@
       {
         "name": "Component exists: WorkingCourses.jsx",
         "status": "PASSED",
-        "duration": 6,
+        "duration": 0,
         "details": "Component has 371 lines"
       },
       {
@@ -152,13 +152,13 @@
       {
         "name": "Dockerfile exists and configured",
         "status": "PASSED",
-        "duration": 3,
+        "duration": 0,
         "details": "Dockerfile properly configured for nginx deployment"
       },
       {
         "name": "nginx.conf production ready",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "All production configs found: gzip on, try_files, proxy_pass"
       },
       {
@@ -170,19 +170,19 @@
       {
         "name": "Documentation exists: README.md",
         "status": "PASSED",
-        "duration": 0,
+        "duration": 1,
         "details": "342 lines, 10.0KB"
       },
       {
         "name": "Documentation exists: CHANGELOG.md",
         "status": "PASSED",
-        "duration": 2,
+        "duration": 0,
         "details": "582 lines, 22.4KB"
       },
       {
         "name": "Documentation exists: EMAILJS_SETUP.md",
         "status": "PASSED",
-        "duration": 8,
+        "duration": 0,
         "details": "187 lines, 4.5KB"
       },
       {
@@ -194,25 +194,25 @@
       {
         "name": "Documentation exists: OLLAMA_EXTERNAL_SETUP.md",
         "status": "PASSED",
-        "duration": 2,
+        "duration": 0,
         "details": "203 lines, 4.5KB"
       },
       {
         "name": "Documentation exists: AGENTS.md",
         "status": "PASSED",
-        "duration": 3,
+        "duration": 1,
         "details": "630 lines, 17.1KB"
       },
       {
         "name": "Documentation exists: TASKS.md",
         "status": "PASSED",
-        "duration": 1,
+        "duration": 0,
         "details": "343 lines, 13.9KB"
       },
       {
         "name": "Documentation exists: PLANNING.md",
         "status": "PASSED",
-        "duration": 4,
+        "duration": 0,
         "details": "594 lines, 18.4KB"
       }
     ],
@@ -221,7 +221,7 @@
         "name": "Build assets size check",
         "status": "PASSED",
         "duration": 0,
-        "details": "JS: 296.2KB, CSS: 54.1KB"
+        "details": "JS: 307.7KB, CSS: 55.1KB"
       },
       {
         "name": "Package.json dependencies check",
@@ -252,7 +252,7 @@
       {
         "name": "Viewport meta tag",
         "status": "PASSED",
-        "duration": 5,
+        "duration": 0,
         "details": "Viewport meta tag configured correctly"
       }
     ],
@@ -266,7 +266,7 @@
       {
         "name": "CORS configuration in nginx",
         "status": "PASSED",
-        "duration": 6,
+        "duration": 0,
         "details": "CORS headers configured in nginx"
       },
       {
