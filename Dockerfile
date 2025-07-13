@@ -1,13 +1,20 @@
-# Dockerfile for production build
-FROM nginx:alpine
+# Dockerfile for Next.js production build
+FROM node:18-alpine
 
-# Copy built assets
-COPY dist/ /usr/share/nginx/html/
+WORKDIR /app
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm ci --only=production
 
-# Expose port 80
-EXPOSE 80
+# Copy all application files
+COPY . .
 
-CMD ["nginx", "-g", "daemon off;"]
+# Build the Next.js application
+RUN npm run build
+
+# Expose port 3000 (Next.js default)
+EXPOSE 3000
+
+# Start the production server
+CMD ["npm", "start"]
