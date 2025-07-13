@@ -1,0 +1,79 @@
+{
+  "polyfillFiles": [
+    "static/chunks/polyfills-42372ed130431b0a.js"
+  ],
+  "devFiles": [],
+  "ampDevFiles": [],
+  "lowPriorityFiles": [
+    "static/o0BY7QCtgI4FKyORne_t0/_buildManifest.js",
+    "static/o0BY7QCtgI4FKyORne_t0/_ssgManifest.js"
+  ],
+  "rootMainFiles": [],
+  "rootMainFilesTree": {},
+  "pages": {
+    "/BlogPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/BlogPage-0ad9a8c5d3f2fc75.js"
+    ],
+    "/BookingPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/BookingPage-85750aead8e0801a.js"
+    ],
+    "/ContactPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/ContactPage-0015d2aeca6b1484.js"
+    ],
+    "/CoursesPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/973-ce8c6fca14746d6d.js",
+      "static/chunks/pages/CoursesPage-bad6e5ed9543cba5.js"
+    ],
+    "/HomePage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/HomePage-e9ad1ac2a7bfcd8f.js"
+    ],
+    "/MaterialsPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/MaterialsPage-2983b2ee72bede76.js"
+    ],
+    "/PricingPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/973-ce8c6fca14746d6d.js",
+      "static/chunks/pages/PricingPage-f547e682fa2ba7bb.js"
+    ],
+    "/TestPage": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/TestPage-bf5034ffc78d0a9a.js"
+    ],
+    "/_app": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/css/606935cf31d8c95e.css",
+      "static/chunks/pages/_app-00dcba442cc60be3.js"
+    ],
+    "/_error": [
+      "static/chunks/webpack-8cac0b4b405cede1.js",
+      "static/chunks/framework-f75312fc4004b783.js",
+      "static/chunks/main-e8e1731cd5939c24.js",
+      "static/chunks/pages/_error-41608b100cc61246.js"
+    ]
+  },
+  "ampFirstPages": []
+}

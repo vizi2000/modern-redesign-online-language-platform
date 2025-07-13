@@ -7,7 +7,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Cześć! 👋 Jestem Twoim asystentem językowym. Mogę pomóc Ci z nauką języków, odpowiedzieć na pytania o kursy lub po prostu porozmawiać w różnych językach. Jak mogę Ci pomóc?",
+      text: "Cześć! 👋 Jestem Twoim asystentem językowym AI (Dolphin Mistral). Mogę pomóc Ci z nauką języków, odpowiedzieć na pytania o kursy lub po prostu porozmawiać w różnych językach. Jak mogę Ci pomóc?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -52,63 +52,49 @@ const Chatbot = () => {
     setShowSuggestions(false)
 
     try {
-      // Check if we're on localhost or external IP
-      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      const isExternalIP = window.location.hostname === '194.181.240.37'
-      
-      let ollamaUrl
-      if (isLocalhost) {
-        // For localhost - use nginx proxy to local Ollama
-        ollamaUrl = '/api/ollama/generate'
-      } else if (isExternalIP) {
-        // For external IP - use nginx proxy (same as localhost)
-        ollamaUrl = '/api/ollama/generate'
-      } else {
-        throw new Error('Unknown host - using fallback mode')
-      }
-      
-      if (isLocalhost || isExternalIP) {
-        // Try Ollama API for both localhost and external IP connections
-        
-        const response = await fetch(ollamaUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          mode: isExternalIP ? 'cors' : 'same-origin',
-          body: JSON.stringify({
-            model: 'llama3:8b',
-            prompt: `Jesteś pomocnym asystentem językowym dla Akademii Poliglotki - szkoły języków online. Pomagasz uczniom w nauce języków obcych, odpowiadasz na pytania o kursy, metody nauki i motywujesz do nauki. Odpowiadaj w języku polskim, ale możesz również używać innych języków jeśli użytkownik o to poprosi. Bądź przyjazny, pomocny i zachęcający.
-
-Wiadomość użytkownika: ${textToSend}
-
-Odpowiedź:`,
-            stream: false,
-            options: {
-              temperature: 0.7,
-              max_tokens: 500
+      // Use OpenRouter API with Dolphin Mistral model
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer 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',
+          'Content-Type': 'application/json',
+          'HTTP-Referer': window.location.origin,
+          'X-Title': 'Akademia Poliglotki'
+        },
+        body: JSON.stringify({
+          model: 'cognitivecomputations/dolphin-mistral-24b-venice-edition:free',
+          messages: [
+            {
+              role: 'system',
+              content: 'Jesteś pomocnym asystentem językowym dla Akademii Poliglotki - szkoły języków online. Pomagasz uczniom w nauce języków obcych, odpowiadasz na pytania o kursy, metody nauki i motywujesz do nauki. Odpowiadaj w języku polskim, ale możesz również używać innych języków jeśli użytkownik o to poprosi. Bądź przyjazny, pomocny i zachęcający. Trzymaj odpowiedzi w rozsądnych granicach długości.'
+            },
+            {
+              role: 'user',
+              content: textToSend
             }
-          }),
+          ],
+          temperature: 0.7,
+          max_tokens: 500,
+          top_p: 1,
+          frequency_penalty: 0,
+          presence_penalty: 0
         })
+      })
 
-        if (!response.ok) {
-          throw new Error('Ollama API not available')
-        }
-
-        const data = await response.json()
-        
-        const botMessage = {
-          id: Date.now() + 1,
-          text: data.response,
-          sender: 'bot',
-          timestamp: new Date()
-        }
-
-        setMessages(prev => [...prev, botMessage])
-      } else {
-        // For external IPs, immediately use fallback response
-        throw new Error('External IP - using fallback mode')
+      if (!response.ok) {
+        throw new Error(`OpenRouter API error: ${response.status}`)
       }
+
+      const data = await response.json()
+      
+      const botMessage = {
+        id: Date.now() + 1,
+        text: data.choices[0].message.content,
+        sender: 'bot',
+        timestamp: new Date()
+      }
+
+      setMessages(prev => [...prev, botMessage])
     } catch (error) {
       console.error('Error:', error)
       
@@ -138,7 +124,7 @@ Odpowiedź:`,
         
         "kontakt": "📞 **Kontakt:**\n• Email: kontakt@akademiapoliglotki.pl\n• Telefon: +48 123 456 789\n• Formularz kontaktowy na stronie\n\n[Napisz do nas](#kontakt)",
         
-        "default": "🤖 **Asystent AI (tryb offline)**\n\nDziękuję za pytanie! Aktualnie działam w trybie podstawowym. Oto najczęściej zadawane pytania:\n\n• Ile kosztują lekcje?\n• Jak zacząć naukę?\n• Jakie są godziny lekcji?\n• Czy oferujecie bezpłatną lekcję?\n• Jak sprawdzić poziom języka?\n\nMożesz też skontaktować się bezpośrednio:\n📧 kontakt@akademiapoliglotki.pl\n📞 +48 123 456 789"
+        "default": "🤖 **Asystent AI Dolphin Mistral (tryb offline)**\n\nDziękuję za pytanie! Aktualnie połączenie z modelem AI jest niedostępne, działam w trybie podstawowym. Oto najczęściej zadawane pytania:\n\n• Ile kosztują lekcje?\n• Jak zacząć naukę?\n• Jakie są godziny lekcji?\n• Czy oferujecie bezpłatną lekcję?\n• Jak sprawdzić poziom języka?\n\nMożesz też skontaktować się bezpośrednio:\n📧 kontakt@akademiapoliglotki.pl\n📞 +48 123 456 789"
       }
       
       // Smart response matching
