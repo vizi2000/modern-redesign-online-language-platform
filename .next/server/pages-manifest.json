@@ -1,10 +1,10 @@
 {
   "/_app": "pages/_app.js",
   "/BlogPage": "pages/BlogPage.html",
+  "/BookingPage": "pages/BookingPage.html",
   "/ContactPage": "pages/ContactPage.html",
   "/CoursesPage": "pages/CoursesPage.html",
   "/MaterialsPage": "pages/MaterialsPage.html",
-  "/BookingPage": "pages/BookingPage.html",
   "/HomePage": "pages/HomePage.html",
   "/PricingPage": "pages/PricingPage.html",
   "/TestPage": "pages/TestPage.html",

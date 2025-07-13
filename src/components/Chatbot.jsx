@@ -7,7 +7,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Cześć! 👋 Jestem Twoim asystentem językowym AI (Dolphin Mistral). Mogę pomóc Ci z nauką języków, odpowiedzieć na pytania o kursy lub po prostu porozmawiać w różnych językach. Jak mogę Ci pomóc?",
+      text: "Cześć! 👋 Jestem PoliglotkAI - Twoim osobistym asystentem do nauki języków obcych!\n\n🧠 Wykorzystuję zaawansowaną sztuczną inteligencję (Dolphin Mistral), aby pomóc Ci:\n• 📚 W nauce gramatyki i słownictwa\n• 💬 W praktycznych konwersacjach\n• 🎯 W doborze odpowiedniego kursu\n• 🌍 W odkrywaniu kultur\n\nMogę rozmawiać po polsku i w wielu innych językach. Jak mogę Ci dziś pomóc?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -15,6 +15,7 @@ const Chatbot = () => {
   const [inputText, setInputText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showSuggestions, setShowSuggestions] = useState(true)
+  const [showNotification, setShowNotification] = useState(true)
   const messagesEndRef = useRef(null)
 
   const suggestedQuestions = [
@@ -66,7 +67,7 @@ const Chatbot = () => {
           messages: [
             {
               role: 'system',
-              content: 'Jesteś pomocnym asystentem językowym dla Akademii Poliglotki - szkoły języków online. Pomagasz uczniom w nauce języków obcych, odpowiadasz na pytania o kursy, metody nauki i motywujesz do nauki. Odpowiadaj w języku polskim, ale możesz również używać innych języków jeśli użytkownik o to poprosi. Bądź przyjazny, pomocny i zachęcający. Trzymaj odpowiedzi w rozsądnych granicach długości.'
+              content: 'Jesteś PoliglotkAI - zaawansowanym asystentem językowym AI dla Akademii Poliglotki. Wykorzystujesz model Dolphin Mistral do pomocy w nauce języków obcych. Twoje główne zadania to: 1) Pomoc w nauce gramatyki i słownictwa, 2) Konwersacje w różnych językach, 3) Tłumaczenia i wyjaśnienia językowe, 4) Motywowanie do nauki, 5) Informacje o kursach. Odpowiadaj głównie po polsku, ale płynnie przełączaj się na inne języki gdy użytkownik tego potrzebuje. Bądź przyjazny, entuzjastyczny i pomocny. Używaj emoji dla lepszej komunikacji. Przedstawiaj się jako PoliglotkAI.'
             },
             {
               role: 'user',
@@ -124,7 +125,7 @@ const Chatbot = () => {
         
         "kontakt": "📞 **Kontakt:**\n• Email: kontakt@akademiapoliglotki.pl\n• Telefon: +48 123 456 789\n• Formularz kontaktowy na stronie\n\n[Napisz do nas](#kontakt)",
         
-        "default": "🤖 **Asystent AI Dolphin Mistral (tryb offline)**\n\nDziękuję za pytanie! Aktualnie połączenie z modelem AI jest niedostępne, działam w trybie podstawowym. Oto najczęściej zadawane pytania:\n\n• Ile kosztują lekcje?\n• Jak zacząć naukę?\n• Jakie są godziny lekcji?\n• Czy oferujecie bezpłatną lekcję?\n• Jak sprawdzić poziom języka?\n\nMożesz też skontaktować się bezpośrednio:\n📧 kontakt@akademiapoliglotki.pl\n📞 +48 123 456 789"
+        "default": "🤖 **PoliglotkAI (tryb offline)**\n\nCześć! Jestem PoliglotkAI, ale aktualnie działam w trybie offline. Mogę odpowiedzieć na najczęstsze pytania:\n\n📌 **Popularne tematy:**\n• 💰 Ile kosztują lekcje?\n• 🚀 Jak zacząć naukę?\n• ⏰ Jakie są godziny lekcji?\n• 🎁 Czy oferujecie bezpłatną lekcję?\n• 📊 Jak sprawdzić poziom języka?\n\nZadaj pytanie używając słów kluczowych lub skontaktuj się bezpośrednio:\n📧 kontakt@akademiapoliglotki.pl\n📞 +48 123 456 789"
       }
       
       // Smart response matching
@@ -196,88 +197,135 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chatbot Toggle Button */}
+      {/* Chatbot Toggle Button with Notification */}
       <div className="fixed bottom-6 right-6 z-50">
+        {!isOpen && showNotification && (
+          <div className="absolute -top-16 -left-40 bg-white rounded-lg shadow-lg p-3 animate-slideIn">
+            <button
+              onClick={() => setShowNotification(false)}
+              className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 flex items-center justify-center text-xs"
+            >
+              ×
+            </button>
+            <p className="text-sm font-medium text-gray-800">
+              Masz pytanie? <span className="text-blue-600">PoliglotkAI</span> pomoże! 🤖
+            </p>
+          </div>
+        )}
         <Button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white shadow-lg transition-all duration-300 transform hover:scale-110"
+          onClick={() => {
+            setIsOpen(!isOpen)
+            setShowNotification(false)
+          }}
+          className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white shadow-lg transition-all duration-300 transform hover:scale-110 relative"
         >
           {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+          {!isOpen && (
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-ping"></span>
+          )}
         </Button>
       </div>
 
-      {/* Chatbot Window */}
+      {/* Chatbot Window - Enhanced and Bigger */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 h-96 bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 z-50 flex flex-col overflow-hidden">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-slate-700 to-blue-600 text-white p-4 flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Bot className="w-5 h-5" />
-              <span className="font-semibold">Asystent Językowy</span>
+        <div className="fixed bottom-24 right-6 w-96 md:w-[450px] h-[600px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 z-50 flex flex-col overflow-hidden animate-slideIn">
+          {/* Header with PoliglotkAI branding */}
+          <div className="bg-gradient-to-r from-slate-700 to-blue-600 text-white p-5 flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <Bot className="w-8 h-8 animate-pulse" />
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
+              </div>
+              <div>
+                <span className="font-bold text-lg">PoliglotkAI</span>
+                <p className="text-xs text-white/80">Twój inteligentny asystent językowy</p>
+              </div>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-full p-1 transition-colors"
+              className="hover:bg-white/20 rounded-full p-2 transition-colors"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          {/* Messages with enhanced styling */}
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-b from-slate-50 to-white">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fadeIn`}
               >
-                <div
-                  className={`max-w-xs p-3 rounded-2xl ${
-                    message.sender === 'user'
-                      ? 'bg-gradient-to-r from-slate-700 to-blue-600 text-white'
-                      : 'bg-slate-100 text-slate-800 border border-slate-200'
-                  }`}
-                >
-                  <div className="flex items-start space-x-2">
+                <div className={`flex items-start space-x-3 max-w-[85%]`}>
+                  {message.sender === 'bot' && (
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-blue-600 rounded-full flex items-center justify-center shadow-md">
+                        <Bot className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                  )}
+                  <div
+                    className={`p-4 rounded-2xl shadow-sm ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-slate-700 to-blue-600 text-white ml-12'
+                        : 'bg-white text-slate-800 border border-slate-200'
+                    }`}
+                  >
                     {message.sender === 'bot' && (
-                      <Bot className="w-4 h-4 mt-0.5 text-slate-600" />
-                    )}
-                    {message.sender === 'user' && (
-                      <User className="w-4 h-4 mt-0.5 text-white" />
+                      <p className="text-xs font-semibold text-blue-600 mb-1">PoliglotkAI</p>
                     )}
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {message.text}
                     </p>
+                    <p className="text-xs opacity-60 mt-2">
+                      {message.timestamp.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' })}
+                    </p>
                   </div>
+                  {message.sender === 'user' && (
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center shadow-md">
+                        <User className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
 
-            {/* Suggested Questions */}
+            {/* Enhanced Suggested Questions */}
             {showSuggestions && messages.length === 1 && (
-              <div className="space-y-2">
-                <p className="text-xs text-slate-500 text-center">Sugerowane pytania:</p>
-                <div className="space-y-1">
-                  {suggestedQuestions.slice(0, 5).map((question, index) => (
+              <div className="space-y-3 animate-fadeIn">
+                <p className="text-sm font-medium text-slate-600 text-center">💡 Co Cię interesuje?</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {suggestedQuestions.slice(0, 6).map((question, index) => (
                     <button
                       key={index}
                       onClick={() => sendMessage(question)}
-                      className="w-full text-left p-2 text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors border border-blue-200"
+                      className="p-3 text-xs bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 text-slate-700 rounded-xl transition-all duration-200 border border-blue-200 hover:border-blue-300 hover:shadow-md transform hover:scale-105"
                     >
-                      {question}
+                      <span className="block font-medium">{question}</span>
                     </button>
                   ))}
                 </div>
               </div>
             )}
+            {/* Enhanced typing indicator */}
             {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-slate-100 border border-slate-200 p-3 rounded-2xl">
-                  <div className="flex items-center space-x-2">
-                    <Bot className="w-4 h-4 text-slate-600" />
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+              <div className="flex justify-start animate-fadeIn">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-blue-600 rounded-full flex items-center justify-center shadow-md">
+                      <Bot className="w-6 h-6 text-white animate-pulse" />
+                    </div>
+                  </div>
+                  <div className="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+                    <p className="text-xs font-semibold text-blue-600 mb-1">PoliglotkAI pisze...</p>
+                    <div className="flex items-center space-x-2">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -286,26 +334,56 @@ const Chatbot = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-4 border-t border-slate-200/50">
+          {/* Enhanced Input Area */}
+          <div className="p-5 border-t border-slate-200/50 bg-gradient-to-b from-white to-slate-50">
+            {/* Quick Actions */}
+            <div className="flex space-x-2 mb-3">
+              <button
+                onClick={() => sendMessage("🇬🇧 Przetłumacz na angielski")}
+                className="px-3 py-1 text-xs bg-emerald-100 text-emerald-700 rounded-full hover:bg-emerald-200 transition-colors"
+              >
+                🇬🇧 EN
+              </button>
+              <button
+                onClick={() => sendMessage("🇫🇷 Przetłumacz na francuski")}
+                className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors"
+              >
+                🇫🇷 FR
+              </button>
+              <button
+                onClick={() => sendMessage("🇩🇪 Przetłumacz na niemiecki")}
+                className="px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200 transition-colors"
+              >
+                🇩🇪 DE
+              </button>
+              <button
+                onClick={() => sendMessage("📝 Sprawdź gramatykę")}
+                className="px-3 py-1 text-xs bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-colors"
+              >
+                📝 Gramatyka
+              </button>
+            </div>
             <div className="flex space-x-2">
-              <input
-                type="text"
+              <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Napisz wiadomość..."
-                className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                placeholder="Napisz wiadomość do PoliglotkAI..."
+                className="flex-1 px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-none"
                 disabled={isLoading}
+                rows="2"
               />
               <Button
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={!inputText.trim() || isLoading}
-                className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white p-2 rounded-lg transition-all duration-300"
+                className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-4 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-5 h-5" />
               </Button>
             </div>
+            <p className="text-xs text-slate-500 mt-2 text-center">
+              Powered by Dolphin Mistral AI • Wpisz w dowolnym języku
+            </p>
           </div>
         </div>
       )}
