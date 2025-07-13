@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import AboutTeacher from '@/components/AboutTeacher.jsx'
 import Newsletter from '@/components/Newsletter.jsx'
+import PoliglotkAIEmbed from '@/components/PoliglotkAIEmbed.jsx'
 import { 
   Globe, 
   Clock, 
@@ -369,6 +370,93 @@ const HomePage = () => {
             </Card>
           </div>
         </div>
+      </section>
+
+      {/* PoliglotkAI Section - Interactive Demo */}
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 px-6 py-2 text-sm bg-blue-100 text-blue-700 border-blue-200">
+              🚀 NOWOŚĆ - AI W NAUCE JĘZYKÓW
+            </Badge>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+              Poznaj <span className="bg-gradient-to-r from-slate-600 to-blue-600 bg-clip-text text-transparent">PoliglotkAI</span>
+            </h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Twój osobisty asystent językowy dostępny 24/7. Wykorzystuje zaawansowaną sztuczną inteligencję, 
+              aby pomóc Ci w nauce dowolnego języka - od gramatyki po konwersacje!
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Features */}
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-800 mb-2">Konwersacje w każdym języku</h3>
+                  <p className="text-slate-600">PoliglotkAI płynnie przełącza się między językami i pomaga w praktycznych rozmowach.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-800 mb-2">Gramatyka i słownictwo</h3>
+                  <p className="text-slate-600">Wyjaśnienia gramatyczne dostosowane do Twojego poziomu z praktycznymi przykładami.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-800 mb-2">Natychmiastowe tłumaczenia</h3>
+                  <p className="text-slate-600">Szybkie tłumaczenia z kontekstem kulturowym i idiomami.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Heart className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-800 mb-2">Wsparcie i motywacja</h3>
+                  <p className="text-slate-600">Przyjazny asystent, który zawsze Cię wspiera i motywuje do nauki.</p>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <p className="text-sm text-slate-500 mb-4">
+                  💡 <strong>Wskazówka:</strong> Możesz zadawać pytania po polsku lub w dowolnym języku, który uczysz się!
+                </p>
+                <Link href="/test-poziomu">
+                  <Button className="bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg transform hover:scale-105 transition-all">
+                    Sprawdź swój poziom z AI
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side - Embedded PoliglotkAI */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-3xl blur-lg opacity-30 animate-pulse"></div>
+              <div className="relative">
+                <PoliglotkAIEmbed height="700px" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Background Decorations */}
+        <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-indigo-200/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-gradient-to-br from-slate-200/30 to-blue-200/30 rounded-full blur-3xl"></div>
       </section>
 
       {/* Primary CTA Section */}

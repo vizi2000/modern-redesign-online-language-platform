@@ -197,61 +197,37 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chatbot Toggle Button with Notification */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {!isOpen && showNotification && (
-          <div className="absolute -top-16 -left-40 bg-white rounded-lg shadow-lg p-3 animate-slideIn">
-            <button
-              onClick={() => setShowNotification(false)}
-              className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 flex items-center justify-center text-xs"
-            >
-              ×
-            </button>
-            <p className="text-sm font-medium text-gray-800">
-              Masz pytanie? <span className="text-blue-600">PoliglotkAI</span> pomoże! 🤖
-            </p>
-          </div>
-        )}
-        <Button
-          onClick={() => {
-            setIsOpen(!isOpen)
-            setShowNotification(false)
-          }}
-          className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-700 to-blue-600 hover:from-slate-800 hover:to-blue-700 text-white shadow-lg transition-all duration-300 transform hover:scale-110 relative"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
-          {!isOpen && (
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-ping"></span>
-          )}
-        </Button>
-      </div>
-
-      {/* Chatbot Window - Enhanced and Bigger */}
-      {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 md:w-[450px] h-[600px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 z-50 flex flex-col overflow-hidden animate-slideIn">
-          {/* Header with PoliglotkAI branding */}
-          <div className="bg-gradient-to-r from-slate-700 to-blue-600 text-white p-5 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <Bot className="w-8 h-8 animate-pulse" />
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
+      {/* Chatbot Sidebar - Full Height */}
+      <div className={`fixed top-0 right-0 h-full bg-white shadow-2xl z-50 transition-all duration-300 ${
+        isOpen ? 'w-full md:w-[500px] lg:w-[600px]' : 'w-0'
+      }`}>
+        {isOpen && (
+          <div className="h-full flex flex-col animate-slideIn">
+            {/* Header with PoliglotkAI branding */}
+            <div className="bg-gradient-to-r from-slate-700 to-blue-600 text-white p-6 flex items-center justify-between shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <Bot className="w-8 h-8 text-white animate-pulse" />
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
+                </div>
+                <div>
+                  <h2 className="font-bold text-2xl">PoliglotkAI</h2>
+                  <p className="text-sm text-white/90">Twój inteligentny asystent językowy 24/7</p>
+                </div>
               </div>
-              <div>
-                <span className="font-bold text-lg">PoliglotkAI</span>
-                <p className="text-xs text-white/80">Twój inteligentny asystent językowy</p>
-              </div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="hover:bg-white/20 rounded-xl p-3 transition-colors group"
+              >
+                <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
+              </button>
             </div>
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-full p-2 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
 
-          {/* Messages with enhanced styling */}
-          <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-b from-slate-50 to-white">
-            {messages.map((message) => (
+            {/* Messages with enhanced styling */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white">
+              {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} animate-fadeIn`}
@@ -334,10 +310,10 @@ const Chatbot = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Enhanced Input Area */}
-          <div className="p-5 border-t border-slate-200/50 bg-gradient-to-b from-white to-slate-50">
-            {/* Quick Actions */}
-            <div className="flex space-x-2 mb-3">
+            {/* Enhanced Input Area */}
+            <div className="p-6 border-t border-slate-200/50 bg-gradient-to-b from-white to-slate-50 shadow-lg">
+              {/* Quick Actions */}
+              <div className="flex flex-wrap gap-2 mb-4">
               <button
                 onClick={() => sendMessage("🇬🇧 Przetłumacz na angielski")}
                 className="px-3 py-1 text-xs bg-emerald-100 text-emerald-700 rounded-full hover:bg-emerald-200 transition-colors"
@@ -381,10 +357,58 @@ const Chatbot = () => {
                 <Send className="w-5 h-5" />
               </Button>
             </div>
-            <p className="text-xs text-slate-500 mt-2 text-center">
-              Powered by Dolphin Mistral AI • Wpisz w dowolnym języku
-            </p>
+              <p className="text-xs text-slate-500 mt-2 text-center">
+                Powered by Dolphin Mistral AI • Wpisz w dowolnym języku
+              </p>
+            </div>
           </div>
+        )}
+      </div>
+
+      {/* Toggle Button - Vertical Tab Style */}
+      <button
+        onClick={() => {
+          setIsOpen(!isOpen)
+          setShowNotification(false)
+        }}
+        className={`fixed top-1/2 -translate-y-1/2 z-50 bg-gradient-to-r from-slate-700 to-blue-600 text-white shadow-lg transition-all duration-300 ${
+          isOpen ? 'right-[500px] md:right-[500px] lg:right-[600px]' : 'right-0'
+        } rounded-l-2xl py-6 px-3 hover:px-5 group`}
+      >
+        <div className="flex flex-col items-center space-y-2">
+          <div className="relative">
+            <Bot className="w-8 h-8" />
+            {!isOpen && (
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-ping"></span>
+            )}
+          </div>
+          <span className="writing-mode-vertical text-sm font-bold">
+            {isOpen ? 'Zamknij' : 'PoliglotkAI'}
+          </span>
+          {isOpen ? (
+            <X className="w-5 h-5 group-hover:rotate-90 transition-transform" />
+          ) : (
+            <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          )}
+        </div>
+      </button>
+
+      {/* Floating Hint for Closed State */}
+      {!isOpen && showNotification && (
+        <div className="fixed top-1/2 -translate-y-1/2 right-16 bg-white rounded-lg shadow-lg p-4 animate-slideIn max-w-xs">
+          <button
+            onClick={() => setShowNotification(false)}
+            className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 flex items-center justify-center text-xs"
+          >
+            ×
+          </button>
+          <h3 className="font-bold text-gray-800 mb-1">Potrzebujesz pomocy? 🤔</h3>
+          <p className="text-sm text-gray-600">
+            <span className="text-blue-600 font-semibold">PoliglotkAI</span> jest tutaj, aby pomóc Ci w nauce języków!
+          </p>
+          <p className="text-xs text-gray-500 mt-2">
+            Kliknij przycisk obok →
+          </p>
         </div>
       )}
     </>

@@ -401,6 +401,12 @@ html {
   outline-offset: 2px;
 }
 
+/* Vertical Text */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
 /* Print Styles */
 @media print {
   .no-print {

@@ -1,13 +1,13 @@
 {
   "/_app": "pages/_app.js",
-  "/BlogPage": "pages/BlogPage.html",
   "/BookingPage": "pages/BookingPage.html",
   "/ContactPage": "pages/ContactPage.html",
   "/CoursesPage": "pages/CoursesPage.html",
-  "/MaterialsPage": "pages/MaterialsPage.html",
-  "/HomePage": "pages/HomePage.html",
   "/PricingPage": "pages/PricingPage.html",
   "/TestPage": "pages/TestPage.html",
+  "/BlogPage": "pages/BlogPage.html",
+  "/MaterialsPage": "pages/MaterialsPage.html",
+  "/HomePage": "pages/HomePage.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
