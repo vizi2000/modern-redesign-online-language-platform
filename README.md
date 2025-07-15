@@ -44,6 +44,12 @@ A comprehensive modern redesign of the Akademia Poliglotki online language learn
 - **PostCSS** with Autoprefixer
 - **Modern JavaScript** (ES6+)
 
+### Backend API
+- **Node.js (Express)** with Prisma ORM
+- **PostgreSQL** database
+- **JWT authentication** and **bcrypt** password hashing
+
+
 ## 📁 Project Structure
 
 ```
@@ -190,6 +196,11 @@ npm run preview
 ```
 
 ### Development Scripts
+To run backend tests:
+```bash
+cd backend && npm test
+```
+
 ```json
 {
   "scripts": {
@@ -255,6 +266,12 @@ npx vercel --prod
 - Set up proper MIME types for assets
 
 ### Option 3: Docker Deployment
+### Using docker-compose
+```bash
+docker-compose up --build
+```
+This starts the frontend on port 3000 and the backend on port 4000.
+
 ```dockerfile
 # Use provided Dockerfile
 docker build -t akademia-poliglotki .
@@ -293,7 +310,7 @@ docker run -p 80:80 akademia-poliglotki
 
 ### Current State
 - **Missing UI components** need to be installed/implemented
-- **No backend integration** (frontend-only prototype)
+- **Basic backend implemented with Node.js and PostgreSQL**
 - **Static content** (no CMS integration yet)
 - **Demo testimonials** (need real customer photos)
 
