@@ -320,6 +320,26 @@ docker run -p 80:80 akademia-poliglotki
 ## 📜 License
 
 This project is created as a design proposal for Akademia Poliglotki. All rights reserved.
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Register user with email, password, role (`STUDENT` or `TUTOR`). Returns JWT.
+- `POST /api/auth/login` - Login and receive JWT.
+
+### Tutor Profiles
+- `GET /api/tutors` - List all tutor profiles.
+- `GET /api/tutors/:id` - Get tutor profile by id.
+- `POST /api/tutors` - Create tutor profile.
+- `PUT /api/tutors/:id` - Update tutor profile.
+- `DELETE /api/tutors/:id` - Remove tutor profile.
+
+### Booking Requests
+- `GET /api/bookings` - List bookings.
+- `GET /api/bookings/:id` - Get booking by id.
+- `POST /api/bookings` - Create booking request.
+- `PUT /api/bookings/:id` - Update booking status.
+- `DELETE /api/bookings/:id` - Delete booking.
+
 
 ## 🏆 Project Achievements
 
