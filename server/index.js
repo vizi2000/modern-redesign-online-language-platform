@@ -16,7 +16,23 @@ function generateToken(user) {
 
 // Auth Routes
 app.post('/api/auth/register', async (req, res) => {
-  const { email, password, role } = req.body;
+  const {
+    email,
+    password,
+    role,
+    currentLevel,
+    targetLevel,
+    learningPreferences,
+    availability,
+    personalityTraits,
+    learningGoals,
+    budgetRange,
+    teachingLevels,
+    specializations,
+    teachingMethods,
+    teachingPersonality,
+    hourlyRate,
+  } = req.body;
   try {
     const hashed = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
@@ -24,10 +40,30 @@ app.post('/api/auth/register', async (req, res) => {
     });
     if (role === 'TUTOR') {
       await prisma.tutorProfile.create({
-        data: { userId: user.id, qualification: '', availability: '' },
+        data: {
+          userId: user.id,
+          qualification: '',
+          availability: availability || '',
+          teachingLevels,
+          specializations,
+          teachingMethods,
+          teachingPersonality,
+          hourlyRate,
+        },
       });
     } else {
-      await prisma.studentProfile.create({ data: { userId: user.id } });
+      await prisma.studentProfile.create({
+        data: {
+          userId: user.id,
+          currentLevel,
+          targetLevel,
+          learningPreferences,
+          availability,
+          personalityTraits,
+          learningGoals,
+          budgetRange,
+        },
+      });
     }
     const token = generateToken(user);
     res.json({ token });
@@ -64,9 +100,29 @@ app.get('/api/tutors/:id', async (req, res) => {
 });
 
 app.post('/api/tutors', async (req, res) => {
-  const { userId, qualification, availability } = req.body;
+  const {
+    userId,
+    qualification,
+    availability,
+    teachingLevels,
+    specializations,
+    teachingMethods,
+    teachingPersonality,
+    hourlyRate,
+  } = req.body;
   try {
-    const tutor = await prisma.tutorProfile.create({ data: { userId, qualification, availability } });
+    const tutor = await prisma.tutorProfile.create({
+      data: {
+        userId,
+        qualification,
+        availability,
+        teachingLevels,
+        specializations,
+        teachingMethods,
+        teachingPersonality,
+        hourlyRate,
+      },
+    });
     res.json(tutor);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -75,9 +131,28 @@ app.post('/api/tutors', async (req, res) => {
 
 app.put('/api/tutors/:id', async (req, res) => {
   const id = parseInt(req.params.id);
-  const { qualification, availability } = req.body;
+  const {
+    qualification,
+    availability,
+    teachingLevels,
+    specializations,
+    teachingMethods,
+    teachingPersonality,
+    hourlyRate,
+  } = req.body;
   try {
-    const tutor = await prisma.tutorProfile.update({ where: { id }, data: { qualification, availability } });
+    const tutor = await prisma.tutorProfile.update({
+      where: { id },
+      data: {
+        qualification,
+        availability,
+        teachingLevels,
+        specializations,
+        teachingMethods,
+        teachingPersonality,
+        hourlyRate,
+      },
+    });
     res.json(tutor);
   } catch (err) {
     res.status(400).json({ error: err.message });
