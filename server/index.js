@@ -2,9 +2,11 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('./generated/prisma');
+const RealtimeMatchingEngine = require('./realtimeMatchingEngine');
 require('dotenv').config();
 
 const prisma = new PrismaClient();
+const matchingEngine = new RealtimeMatchingEngine(prisma);
 const app = express();
 app.use(express.json());
 
@@ -135,6 +137,22 @@ app.delete('/api/bookings/:id', async (req, res) => {
     res.json({ success: true });
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+// Tutor matching endpoint
+app.post('/api/match-tutors', async (req, res) => {
+  const { studentId } = req.body;
+  if (!studentId) {
+    return res.status(400).json({ error: 'studentId is required' });
+  }
+
+  try {
+    const matches = await matchingEngine.find_optimal_matches(Number(studentId));
+    res.json(matches);
+  } catch (err) {
+    const status = err.message === 'Student not found' ? 404 : 400;
+    res.status(status).json({ error: err.message });
   }
 });
 
