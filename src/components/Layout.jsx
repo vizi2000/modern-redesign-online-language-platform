@@ -75,6 +75,9 @@ const Layout = ({ children }) => {
               <Link href="/blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 Blog
               </Link>
+              <Link href="/TutorMatchingPage" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                Dopasuj korepetytora
+              </Link>
               <Link href="/kontakt" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 Kontakt
               </Link>
@@ -108,6 +111,9 @@ const Layout = ({ children }) => {
                 </Link>
                 <Link href="/blog" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                   Blog
+                </Link>
+                <Link href="/TutorMatchingPage" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                  Dopasuj korepetytora
                 </Link>
                 <Link href="/kontakt" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                   Kontakt
@@ -171,6 +177,7 @@ const Layout = ({ children }) => {
                 <li><Link href="/" className="hover:text-white transition-colors">Strona główna</Link></li>
                 <li><Link href="/kursy" className="hover:text-white transition-colors">Kursy</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link href="/TutorMatchingPage" className="hover:text-white transition-colors">Dopasuj korepetytora</Link></li>
                 <li><Link href="/materialy" className="hover:text-white transition-colors">Materiały</Link></li>
                 <li><Link href="/kontakt" className="hover:text-white transition-colors">Kontakt</Link></li>
               </ul>
